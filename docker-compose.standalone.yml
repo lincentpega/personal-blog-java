@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: "postgres:16.1"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "blog"
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+    volumes:
+      - pg_data_dev:/var/lib/postgresql/data
+
+volumes:
+  pg_data_dev:
